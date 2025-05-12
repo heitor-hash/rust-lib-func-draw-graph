@@ -40,7 +40,3 @@ fn pyo3_plotter(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(draw_plot_f3deg, m)?)?;
     Ok(())
 }
-
-fn main() {
-    let _ = draw_plot_f2deg(-1f64, 3f64, 4f64, 2f64, -60, 60, -60, 60, 2.0f64);
-}
