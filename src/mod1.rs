@@ -86,6 +86,83 @@ pub fn f3_deg(
     );
 }
 
+pub fn f3_deg_easy(a: f64, b: f64, c: f64, d: f64, x_min: i32, x_max: i32, res_mult: f64) {
+    let range = f3_deg_to_range(a, b, c, d, 0.01f64, x_min, x_max);
+    let range_style = line1_style(res_mult);
+
+    let mut fn_str: String = format!("{a}x³");
+
+    if b != 0.0 {
+        fn_str = format!("{fn_str} + {b}x²");
+    }
+    if c != 0.0 {
+        fn_str = format!("{fn_str} + {c}x");
+    }
+    if d != 0.0 {
+        fn_str = format!("{fn_str} + {d}");
+    }
+
+    let coll: Vec<_> = range.collect();
+
+    let mut y_min: f64 = -5f64;
+    let mut y_max: f64 = 5f64;
+    for (_, y) in &coll {
+        if y < &y_min {
+            y_min = *y;
+        }
+        if y > &y_max {
+            y_max = *y;
+        }
+    }
+    let _ = draw_plot_x640y480(
+        x_min,
+        x_max,
+        y_min as i32,
+        y_max as i32,
+        coll.into_iter(),
+        range_style,
+        fn_str,
+        res_mult,
+    );
+}
+
+pub fn f2_deg_easy(a: f64, b: f64, c: f64, x_min: i32, x_max: i32, res_mult: f64) {
+    let range = f2_deg_to_range(a, b, c, 0.01f64, x_min, x_max);
+    let range_style = line1_style(res_mult);
+
+    let mut fn_str: String = format!("{a}x²");
+
+    if b != 0.0 {
+        fn_str = format!("{fn_str} + {b}x")
+    }
+    if c != 0.0 {
+        fn_str = format!("{fn_str} + {c}")
+    }
+
+    let coll: Vec<_> = range.collect();
+
+    let mut y_min: f64 = -5f64;
+    let mut y_max: f64 = 5f64;
+    for (_, y) in &coll {
+        if y < &y_min {
+            y_min = *y;
+        }
+        if y > &y_max {
+            y_max = *y;
+        }
+    }
+    let _ = draw_plot_x640y480(
+        x_min,
+        x_max,
+        y_min as i32,
+        y_max as i32,
+        coll.into_iter(),
+        range_style,
+        fn_str,
+        res_mult,
+    );
+}
+
 pub fn f2_deg(
     a: f64,
     b: f64,

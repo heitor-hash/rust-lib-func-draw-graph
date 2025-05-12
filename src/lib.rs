@@ -34,6 +34,33 @@ pub fn draw_plot_f3deg(
     Ok(())
 }
 
+#[pyfunction]
+pub fn easy_draw_plot_f2deg(
+    a: f64,
+    b: f64,
+    c: f64,
+    x_min: i32,
+    x_max: i32,
+    res_mult: f64,
+) -> PyResult<()> {
+    mod1::f2_deg_easy(a, b, c, x_min, x_max, res_mult);
+    Ok(())
+}
+
+#[pyfunction]
+pub fn easy_draw_plot_f3deg(
+    a: f64,
+    b: f64,
+    c: f64,
+    d: f64,
+    x_min: i32,
+    x_max: i32,
+    res_mult: f64,
+) -> PyResult<()> {
+    mod1::f3_deg_easy(a, b, c, d, x_min, x_max, res_mult);
+    Ok(())
+}
+
 #[pymodule]
 fn pyo3_plotter(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(draw_plot_f2deg, m)?)?;
