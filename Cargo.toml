@@ -1,0 +1,21 @@
+[package]
+name = "rust-lib-func-draw-graph"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+plotters = "0.3.7"
+
+
+[lib]
+name = "pyo3_plotter"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.24.2"
+features = ["extension-module"]
+
+
+[[bin]]
+name = "func_draw"
+path = "src/lib.rs"

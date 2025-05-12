@@ -1,0 +1,4 @@
+/target
+Cargo.lock
+plot.png
+.vscode/launch.json
